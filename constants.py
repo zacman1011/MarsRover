@@ -1,0 +1,1 @@
+DIRECTIONS = ["N", "E", "W", "S"]
