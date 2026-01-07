@@ -38,8 +38,9 @@ class Rover:
             print(f"Invalid direction {self.direction} - cannot move forward")
             return
 
-        self.x = new_x
-        self.y = new_y
+        if self.board.free_space(new_x, new_y):
+            self.x = new_x
+            self.y = new_y
 
     def __rotate_left(self):
         if self.direction == "N":

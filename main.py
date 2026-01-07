@@ -4,7 +4,7 @@ from runners.runner import Runner
 
 
 def run():
-    board = Board((0, 0), (10, 10))
+    board = Board((0, 0), (10, 10), obstacles=[(1, 3)])
 
     rover1 = Rover(x=1, y=1, direction="N", board=board)
 
@@ -14,6 +14,6 @@ def run():
 
     runner.run(instructions_list=instructions)
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
     run()

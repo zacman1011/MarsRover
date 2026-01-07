@@ -9,3 +9,6 @@ class Board:
 
     def on_board(self, x, y):
         return self.min_coord[0] <= x <= self.max_coord[0] and self.min_coord[1] <= y <= self.max_coord[1]
+
+    def free_space(self, x, y):
+        return (x, y) not in self.obstacles
