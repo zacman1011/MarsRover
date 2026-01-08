@@ -2,7 +2,7 @@ import random
 
 from board import Board
 from constants.direction import Direction
-from rover import Rover
+from rovers.rover import Rover
 
 
 class Runner:
@@ -35,5 +35,5 @@ class Runner:
             instructions = instructions_list[index % num_instructions]
             for instruction in instructions:
                 rover.process(instruction)
-            print(f"Finished: {rover}")
+            print(f"Finished: {rover}\n")
         print("Finished")

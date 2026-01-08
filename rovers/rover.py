@@ -16,18 +16,18 @@ class Rover:
             return
 
         if instruction == Instruction.F:
-            self.__forward()
+            self._forward()
         elif instruction == Instruction.R:
-            self.__rotate_right()
+            self._rotate_right()
         elif instruction == Instruction.L:
-            self.__rotate_left()
+            self._rotate_left()
         else:
             print(f"Invalid instruction {instruction} - cannot process")
             return
 
         self.__check_lost()
 
-    def __forward(self):
+    def _forward(self):
         new_x = self.x
         new_y = self.y
         if self.direction == Direction.N:
@@ -46,25 +46,25 @@ class Rover:
             self.x = new_x
             self.y = new_y
 
-    def __rotate_left(self):
+    def _rotate_left(self):
         if self.direction == Direction.N:
             self.direction = Direction.W
+        elif self.direction == Direction.W:
+            self.direction = Direction.S
         elif self.direction == Direction.S:
             self.direction = Direction.E
         elif self.direction == Direction.E:
             self.direction = Direction.N
-        elif self.direction == Direction.W:
-            self.direction = Direction.S
         else:
             print(f"Invalid direction{self.direction} - cannot move rotate left")
 
-    def __rotate_right(self):
+    def _rotate_right(self):
         if self.direction == Direction.N:
             self.direction = Direction.E
-        elif self.direction == Direction.S:
-            self.direction = Direction.W
         elif self.direction == Direction.E:
             self.direction = Direction.S
+        elif self.direction == Direction.S:
+            self.direction = Direction.W
         elif self.direction == Direction.W:
             self.direction = Direction.N
         else:
