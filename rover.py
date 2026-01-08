@@ -1,4 +1,5 @@
-from direction import Direction
+from constants.direction import Direction
+from constants.instructions import Instruction
 
 
 class Rover:
@@ -14,11 +15,11 @@ class Rover:
             print("Rover cannot process instruction as it is lost")
             return
 
-        if instruction == "F":
+        if instruction == Instruction.F:
             self.__forward()
-        elif instruction == "R":
+        elif instruction == Instruction.R:
             self.__rotate_right()
-        elif instruction == "L":
+        elif instruction == Instruction.L:
             self.__rotate_left()
         else:
             print(f"Invalid instruction {instruction} - cannot process")

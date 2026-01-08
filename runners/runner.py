@@ -1,7 +1,7 @@
 import random
 
 from board import Board
-from direction import Direction
+from constants.direction import Direction
 from rover import Rover
 
 

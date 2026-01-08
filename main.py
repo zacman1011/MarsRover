@@ -1,5 +1,6 @@
 from board import Board
-from direction import Direction
+from constants.direction import Direction
+from constants.instructions import Instruction
 from rover import Rover
 from runners.runner import Runner
 
@@ -11,7 +12,9 @@ def run():
 
     runner = Runner(board=board, rovers=[rover1])
 
-    instructions = [["F", "F", "R", "F", "BAD", "F"]]
+    instructions = [
+        [Instruction.F, Instruction.F, Instruction.R, Instruction.F, "BAD", Instruction.F],
+    ]
 
     runner.run(instructions_list=instructions)
 
