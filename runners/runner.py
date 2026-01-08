@@ -1,7 +1,7 @@
 import random
 
 from board import Board
-from constants import DIRECTIONS
+from direction import Direction
 from rover import Rover
 
 
@@ -20,7 +20,7 @@ class Runner:
                     Rover(
                         random.randint(board.min_coord[0], board.max_coord[0]),
                         random.randint(board.min_coord[1], board.max_coord[1]),
-                        random.choice(DIRECTIONS),
+                        random.choice(list(Direction)),
                         self.board
                     )
                 )
