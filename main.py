@@ -13,8 +13,9 @@ def run():
     rover1 = Rover(x=1, y=1, direction=Direction.N, board=board)
     rover2 = Jumper(x=1, y=1, direction=Direction.N, board=board)
     rover3 = Octopus(x=1, y=1, direction=Direction.N, board=board)
+    rover4 = Rover(x=1, y=1, direction=Direction.N, board=board)
 
-    runner = Runner(board=board, rovers=[rover1, rover2, rover3])
+    runner = Runner(board=board, rovers=[rover1, rover2, rover3, rover4])
 
     instructions = [
         [Instruction.F, Instruction.F, Instruction.R, Instruction.F, "BAD", Instruction.F],

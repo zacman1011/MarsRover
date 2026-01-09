@@ -1,14 +1,20 @@
+import uuid
+
 from constants.direction import Direction
 from constants.instructions import Instruction
 
 
 class Rover:
     def __init__(self, x, y, direction, board):
+        self.id = uuid.uuid4()
         self.x = x
         self.y = y
         self.direction = direction
         self.board = board
         self.lost = False
+
+        # Add to the board
+        self.board.update_rover_position(self)
 
     def process(self, instruction):
         if self.lost:
@@ -17,6 +23,7 @@ class Rover:
 
         if instruction == Instruction.F:
             self._forward()
+            self.board.update_rover_position(self)
         elif instruction == Instruction.R:
             self._rotate_right()
         elif instruction == Instruction.L:
@@ -73,6 +80,9 @@ class Rover:
     def __check_lost(self):
         self.lost = not self.board.on_board(self.x, self.y)
         if self.lost: print("Rover lost")
+
+    def location(self):
+        return self.x, self.y
 
     def __str__(self):
         if self.lost: return "LOST"

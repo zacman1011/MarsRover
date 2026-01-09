@@ -5,10 +5,14 @@ class Board:
 
         self.min_coord = min_coord
         self.max_coord = max_coord
-        self.obstacles = obstacles
+        self.obstacles = list(set(obstacles))
+        self.rovers = {}
 
     def on_board(self, x, y):
         return self.min_coord[0] <= x <= self.max_coord[0] and self.min_coord[1] <= y <= self.max_coord[1]
 
     def free_space(self, x, y):
-        return (x, y) not in self.obstacles
+        return (x, y) not in self.obstacles and (x, y) not in self.rovers.values()
+
+    def update_rover_position(self, rover):
+        self.rovers[rover.id] = rover.location()
