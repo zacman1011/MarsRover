@@ -87,6 +87,6 @@ class Rover:
         return self.x, self.y
 
     def __str__(self):
-        if self.lost: return "LOST"
+        if self.lost: return f"{self.id}: LOST"
 
-        return f"{self.x}, {self.y}, {self.direction}"
+        return f"{self.id}: ({self.x}, {self.y}) {self.direction}"

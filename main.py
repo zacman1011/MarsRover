@@ -1,6 +1,7 @@
 from board import Board
 from constants.direction import Direction
 from constants.instructions import Instruction
+from rovers.amnesiac import Amnesiac
 from rovers.jumper import Jumper
 from rovers.octopus import Octopus
 from rovers.rover import Rover
@@ -42,5 +43,21 @@ def run2():
     runner.run(instructions_list=instructions)
 
 
+def run3():
+    board = Board((0, 0), (20, 20), obstacles=[])
+
+    rover1 = Amnesiac(x=9, y=9, direction=Direction.N, board=board)
+
+    rovers = [rover1]
+
+    runner = Runner(board=board, rovers=rovers)
+
+    instructions = [
+        [Instruction.F, Instruction.F, Instruction.F, Instruction.F]
+    ]
+
+    runner.run(instructions_list=instructions)
+
+
 if __name__ == '__main__':
-    run2()
+    run3()
