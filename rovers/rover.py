@@ -23,16 +23,18 @@ class Rover:
 
         if instruction == Instruction.F:
             self._forward()
-            self.board.update_rover_position(self)
         elif instruction == Instruction.R:
             self._rotate_right()
         elif instruction == Instruction.L:
             self._rotate_left()
+        elif instruction == Instruction.SKIP:
+            return
         else:
             print(f"Invalid instruction {instruction} - cannot process")
             return
 
         self.__check_lost()
+        self.board.update_rover_position(self)
 
     def _forward(self):
         new_x = self.x

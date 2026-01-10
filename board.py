@@ -15,4 +15,8 @@ class Board:
         return (x, y) not in self.obstacles and (x, y) not in self.rovers.values()
 
     def update_rover_position(self, rover):
+        if rover.lost:
+            self.rovers.pop(rover.id, None)
+            return
+        
         self.rovers[rover.id] = rover.location()

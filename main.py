@@ -5,9 +5,10 @@ from rovers.jumper import Jumper
 from rovers.octopus import Octopus
 from rovers.rover import Rover
 from runners.runner import Runner
+from runners.stepper import Stepper
 
 
-def run():
+def run1():
     board = Board((0, 0), (20, 20), obstacles=[])
 
     rover1 = Rover(x=1, y=1, direction=Direction.N, board=board)
@@ -24,5 +25,22 @@ def run():
     runner.run(instructions_list=instructions)
 
 
+def run2():
+    board = Board((0, 0), (20, 20), obstacles=[])
+
+    rover1 = Rover(x=2, y=1, direction=Direction.N, board=board)
+    rover2 = Rover(x=1, y=2, direction=Direction.E, board=board)
+
+    rovers = [rover1, rover2]
+
+    runner = Stepper(board=board, rovers=rovers)
+
+    instructions = [
+        [Instruction.F, Instruction.F]
+    ]
+
+    runner.run(instructions_list=instructions)
+
+
 if __name__ == '__main__':
-    run()
+    run2()
