@@ -29,6 +29,7 @@ class Runner:
 
     def run(self, instructions_list):
         print("Running...")
+        print(self.board)
         num_instructions = len(instructions_list)
         for index, rover in enumerate(self.rovers):
             print(f"Start: {rover}")
@@ -37,3 +38,4 @@ class Runner:
                 rover.process(instruction)
             print(f"Finished: {rover}\n")
         print("Finished")
+        print(self.board)

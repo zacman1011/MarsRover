@@ -1,7 +1,9 @@
 from board import Board
 from constants.direction import Direction
 from constants.instructions import Instruction
-from rovers.amnesiac import Amnesiac
+from generators.instructions_generator import generate_instructions
+from generators.obstacle_generator import generate_obstacles
+from rovers.insomniac import Insomniac
 from rovers.jumper import Jumper
 from rovers.octopus import Octopus
 from rovers.rover import Rover
@@ -10,18 +12,21 @@ from runners.stepper import Stepper
 
 
 def run1():
-    board = Board((0, 0), (20, 20), obstacles=[])
+    min_coord = (0, 0)
+    max_coord = (20, 20)
+    obstacles = generate_obstacles(min_coord, max_coord)
 
-    rover1 = Rover(x=1, y=1, direction=Direction.N, board=board)
-    rover2 = Jumper(x=1, y=1, direction=Direction.N, board=board)
-    rover3 = Octopus(x=1, y=1, direction=Direction.N, board=board)
-    rover4 = Rover(x=1, y=1, direction=Direction.N, board=board)
+    board = Board(min_coord=min_coord, max_coord=max_coord, obstacles=obstacles)
 
-    runner = Runner(board=board, rovers=[rover1, rover2, rover3, rover4])
+    rover1 = Rover(x=1, y=1, direction=Direction.N, board=board, rid=1)
+    rover2 = Jumper(x=5, y=5, direction=Direction.N, board=board, rid=2)
+    rover3 = Octopus(x=10, y=10, direction=Direction.N, board=board, rid=3)
+    rover4 = Rover(x=15, y=15, direction=Direction.N, board=board, rid=4)
+    rovers = [rover1, rover2, rover3, rover4]
 
-    instructions = [
-        [Instruction.F, Instruction.F, Instruction.R, Instruction.F, "BAD", Instruction.F],
-    ]
+    runner = Runner(board=board, rovers=rovers)
+
+    instructions = generate_instructions(len(rovers), 15)
 
     runner.run(instructions_list=instructions)
 
@@ -46,7 +51,7 @@ def run2():
 def run3():
     board = Board((0, 0), (20, 20), obstacles=[])
 
-    rover1 = Amnesiac(x=9, y=9, direction=Direction.N, board=board)
+    rover1 = Insomniac(x=9, y=9, direction=Direction.N, board=board)
 
     rovers = [rover1]
 
@@ -59,5 +64,12 @@ def run3():
     runner.run(instructions_list=instructions)
 
 
+def run4():
+    board = Board((0, 0), (10, 10))
+    rover_type = Rover
+    rover = rover_type(1, 2, Direction.N, board)
+    print(rover)
+
+
 if __name__ == '__main__':
-    run3()
+    run1()

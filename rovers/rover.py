@@ -5,8 +5,11 @@ from constants.instructions import Instruction
 
 
 class Rover:
-    def __init__(self, x, y, direction, board):
-        self.id = uuid.uuid4()
+    def __init__(self, x, y, direction, board, rid=None):
+        if rid is None:
+            rid = uuid.uuid4()
+
+        self.id = rid
         self.x = x
         self.y = y
         self.direction = direction
@@ -15,6 +18,12 @@ class Rover:
 
         # Add to the board
         self.board.update_rover_position(self)
+
+    @staticmethod
+    def rover_type(abbr=False):
+        if abbr:
+            return "R"
+        return "Rover"
 
     def process(self, instruction):
         if self.lost:
@@ -89,4 +98,4 @@ class Rover:
     def __str__(self):
         if self.lost: return f"{self.id}: LOST"
 
-        return f"{self.id}: ({self.x}, {self.y}) {self.direction}"
+        return f"{self.rover_type()} {self.id}: ({self.x}, {self.y}) {self.direction}"

@@ -4,6 +4,12 @@ from rovers.rover import Rover
 
 class Jumper(Rover):
 
+    @staticmethod
+    def rover_type(abbr=False):
+        if abbr:
+            return "J"
+        return "Jumper"
+
     def _forward(self):
         new_x = self.x
         new_y = self.y

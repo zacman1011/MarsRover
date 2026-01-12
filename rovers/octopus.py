@@ -3,6 +3,13 @@ from rovers.rover import Rover
 
 
 class Octopus(Rover):
+
+    @staticmethod
+    def rover_type(abbr=False):
+        if abbr:
+            return "O"
+        return "Octopus"
+
     def _forward(self):
         new_x = self.x
         new_y = self.y
