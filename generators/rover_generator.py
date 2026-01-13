@@ -35,4 +35,4 @@ def generate_rovers(board, num_rovers=1, rover_types=None):
 
 
 def generate_direction():
-    return random.choice(list(Direction))
+    return random.choice([Direction.N, Direction.S, Direction.E, Direction.W])

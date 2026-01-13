@@ -24,16 +24,16 @@ class Board:
         self.rovers[rover.id] = rover.location()
 
     def __str__(self):
-        output = ""
+        output = []
         rovers = {}
         for rid in self.rovers:
             location = self.rovers[rid]
             abbr = self.rover_types[rid]
             rovers[location] = abbr
 
-        for x in range(self.min_coord[0], self.max_coord[0] + 1):
+        for y in range(self.min_coord[1], self.max_coord[1] + 1):
             row = ""
-            for y in range(self.min_coord[1], self.max_coord[1] + 1):
+            for x in range(self.min_coord[0], self.max_coord[0] + 1):
                 if (x, y) in self.obstacles:
                     row += "X"
                 elif (x, y) in rovers:
@@ -41,6 +41,6 @@ class Board:
                     row += abbr
                 else:
                     row += "-"
-            row += "\n"
-            output += row
-        return output
+            output.append(row)
+        output.reverse()
+        return "\n".join(output)

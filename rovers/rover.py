@@ -27,7 +27,7 @@ class Rover:
 
     def process(self, instruction):
         if self.lost:
-            print("Rover cannot process instruction as it is lost")
+            self.print_message("Rover cannot process instruction as it is lost")
             return
 
         if instruction == Instruction.F:
@@ -39,7 +39,7 @@ class Rover:
         elif instruction == Instruction.SKIP:
             return
         else:
-            print(f"Invalid instruction {instruction} - cannot process")
+            self.print_message(f"Invalid instruction {instruction} - cannot process")
             return
 
         self.__check_lost()
@@ -57,7 +57,7 @@ class Rover:
         elif self.direction == Direction.W:
             new_x -= 1
         else:
-            print(f"Invalid direction {self.direction} - cannot move forward")
+            self.print_message(f"Invalid direction {self.direction} - cannot move forward")
             return
 
         if self.board.free_space(new_x, new_y):
@@ -74,7 +74,7 @@ class Rover:
         elif self.direction == Direction.E:
             self.direction = Direction.N
         else:
-            print(f"Invalid direction{self.direction} - cannot move rotate left")
+            self.print_message(f"Invalid direction {self.direction} - cannot move rotate left")
 
     def _rotate_right(self):
         if self.direction == Direction.N:
@@ -86,11 +86,11 @@ class Rover:
         elif self.direction == Direction.W:
             self.direction = Direction.N
         else:
-            print(f"Invalid direction{self.direction} - cannot move rotate right")
+            self.print_message(f"Invalid direction {self.direction} - cannot move rotate right")
 
     def __check_lost(self):
         self.lost = not self.board.on_board(self.x, self.y)
-        if self.lost: print("Rover lost")
+        if self.lost: self.print_message("Rover lost")
 
     def location(self):
         return self.x, self.y
@@ -99,3 +99,6 @@ class Rover:
         if self.lost: return f"{self.id}: LOST"
 
         return f"{self.rover_type()} {self.id}: ({self.x}, {self.y}) {self.direction}"
+
+    def print_message(self, content):
+        print(f"{self.rover_type()} {self.id}: {content}")

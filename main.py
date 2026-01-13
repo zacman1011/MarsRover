@@ -3,6 +3,7 @@ from constants.direction import Direction
 from constants.instructions import Instruction
 from generators.instructions_generator import generate_instructions
 from generators.obstacle_generator import generate_obstacles
+from generators.rover_generator import generate_rovers
 from rovers.insomniac import Insomniac
 from rovers.jumper import Jumper
 from rovers.octopus import Octopus
@@ -65,11 +66,15 @@ def run3():
 
 
 def run4():
-    board = Board((0, 0), (10, 10))
-    rover_type = Rover
-    rover = rover_type(1, 2, Direction.N, board)
-    print(rover)
+    min_coord = (0, 0)
+    max_coord = (30, 15)
+    obstacles = generate_obstacles(min_coord, max_coord, 30)
+    board = Board(min_coord=min_coord, max_coord=max_coord, obstacles=obstacles)
+    rovers = generate_rovers(board, 1)
+    runner = Stepper(board=board, rovers=rovers)
+    instructions = generate_instructions(len(rovers), 20)
+    runner.run(instructions)
 
 
 if __name__ == '__main__':
-    run1()
+    run4()

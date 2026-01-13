@@ -22,7 +22,7 @@ class Jumper(Rover):
         elif self.direction == Direction.W:
             new_x -= 2
         else:
-            print(f"Invalid direction {self.direction} - cannot move forward")
+            self.print_message(f"Invalid direction {self.direction} - cannot move forward")
             return
 
         if self.board.free_space(new_x, new_y):

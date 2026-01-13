@@ -1,8 +1,5 @@
-import random
-
 from board import Board
-from constants.direction import Direction
-from rovers.rover import Rover
+from generators.rover_generator import generate_rovers
 
 
 class Runner:
@@ -14,16 +11,7 @@ class Runner:
         self.num_rovers = num_rovers
 
         if rovers is None:
-            rovers = []
-            for i in range(num_rovers):
-                rovers.append(
-                    Rover(
-                        random.randint(board.min_coord[0], board.max_coord[0]),
-                        random.randint(board.min_coord[1], board.max_coord[1]),
-                        random.choice(list(Direction)),
-                        self.board
-                    )
-                )
+            rovers = generate_rovers(self.board, self.num_rovers)
 
         self.rovers = rovers
 
