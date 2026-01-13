@@ -4,10 +4,10 @@ matplotlib.use("Qt5Agg")
 
 import matplotlib.pyplot as plt
 
-from displays.display import Display
+from renderers.renderer import Renderer
 
 
-class MatplotlibDisplay(Display):
+class MatplotlibRenderer(Renderer):
     def __init__(self):
         plt.ion()
         self.fig, self.ax = plt.subplots()

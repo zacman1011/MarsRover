@@ -1,7 +1,7 @@
-from displays.display import Display
+from renderers.renderer import Renderer
 
 
-class ConsoleDisplay(Display):
+class ConsoleRenderer(Renderer):
 
     @staticmethod
     def start():

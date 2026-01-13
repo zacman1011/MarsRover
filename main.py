@@ -1,10 +1,10 @@
 from board import Board
 from constants.direction import Direction
 from constants.instructions import Instruction
-from displays.matplotlib_display import MatplotlibDisplay
 from generators.instructions_generator import generate_instructions
 from generators.obstacle_generator import generate_obstacles
 from generators.rover_generator import generate_rovers
+from renderers.matplotlib_display import MatplotlibRenderer
 from rovers.insomniac import Insomniac
 from rovers.jumper import Jumper
 from rovers.octopus import Octopus
@@ -72,8 +72,8 @@ def run4():
     obstacles = generate_obstacles(min_coord, max_coord, 100)
     board = Board(min_coord=min_coord, max_coord=max_coord, obstacles=obstacles)
     rovers = generate_rovers(board, 5)
-    display = MatplotlibDisplay()
-    runner = Stepper(board=board, rovers=rovers, display=display)
+    renderer = MatplotlibRenderer()
+    runner = Stepper(board=board, rovers=rovers, renderer=renderer)
     instructions = generate_instructions(len(rovers), 200)
     runner.run(instructions)
 

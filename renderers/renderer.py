@@ -1,4 +1,4 @@
-class Display:
+class Renderer:
 
     @staticmethod
     def start():

@@ -1,17 +1,17 @@
 from board import Board
-from displays.console_display import ConsoleDisplay
 from generators.rover_generator import generate_rovers
+from renderers.console_display import ConsoleRenderer
 
 
 class Runner:
-    def __init__(self, num_rovers=1, board=None, rovers=None, display=None):
+    def __init__(self, num_rovers=1, board=None, rovers=None, renderer=None):
         if board is None:
             board = Board((0, 0), (100, 100))
 
-        if display is None:
-            display = ConsoleDisplay()
+        if renderer is None:
+            renderer = ConsoleRenderer()
 
-        self.display = display
+        self.renderer = renderer
         self.board = board
         self.num_rovers = num_rovers
 
@@ -21,11 +21,11 @@ class Runner:
         self.rovers = rovers
 
     def run(self, instructions_list):
-        self.display.start()
-        self.display.display(self.board)
+        self.renderer.start()
+        self.renderer.display(self.board)
 
         num_instructions = len(instructions_list)
-        
+
         for index, rover in enumerate(self.rovers):
             print(f"Start: {rover}")
             instructions = instructions_list[index % num_instructions]
@@ -33,5 +33,5 @@ class Runner:
                 rover.process(instruction)
             print(f"Finished: {rover}\n")
 
-        self.display.display(self.board)
-        self.display.finish(self.board)
+        self.renderer.display(self.board)
+        self.renderer.finish(self.board)
