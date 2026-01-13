@@ -14,5 +14,5 @@ class Madman(Rover):
 
     def process(self, instruction):
         next_instruction = random.choice(list(Instruction))
-        print(f"Ignoring instruction: {instruction} and doing {next_instruction} instead")
+        self.print_message(f"Ignoring instruction: {instruction} and doing {next_instruction} instead", 1)
         super().process(next_instruction)

@@ -35,7 +35,7 @@ class Octopus(Rover):
             new_y -= 1
             new_x -= 1
         else:
-            print(f"Invalid direction {self.direction} - cannot move forward")
+            self.print_message(f"Invalid direction {self.direction} - cannot move forward", 2)
             return
 
         if self.board.free_space(new_x, new_y):
@@ -60,7 +60,7 @@ class Octopus(Rover):
         elif self.direction == Direction.NE:
             self.direction = Direction.N
         else:
-            print(f"Invalid direction{self.direction} - cannot move rotate left")
+            self.print_message(f"Invalid direction {self.direction} - cannot move rotate left", 2)
 
     def _rotate_right(self):
         if self.direction == Direction.N:
@@ -80,4 +80,4 @@ class Octopus(Rover):
         elif self.direction == Direction.NW:
             self.direction = Direction.N
         else:
-            print(f"Invalid direction{self.direction} - cannot move rotate right")
+            self.print_message(f"Invalid direction {self.direction} - cannot move rotate right", 2)
