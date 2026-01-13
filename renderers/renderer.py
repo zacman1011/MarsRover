@@ -9,5 +9,5 @@ class Renderer:
         raise NotImplementedError
 
     @staticmethod
-    def finish(_board):
+    def finish():
         raise NotImplementedError

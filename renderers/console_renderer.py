@@ -12,5 +12,5 @@ class ConsoleRenderer(Renderer):
         print(board)
 
     @staticmethod
-    def finish(_board):
+    def finish():
         print("Finished")

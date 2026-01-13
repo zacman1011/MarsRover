@@ -19,15 +19,15 @@ class Insomniac(Rover):
     def process(self, instruction):
         if self.awake and random.random() <= self.sleep_rate:
             self.awake = False
-            self.print_message(f"{self.id} fell asleep")
+            self.print_message(f"{self.id} fell asleep", 1)
             return
 
         if not self.awake and random.random() <= self.wake_rate:
             self.awake = True
-            self.print_message(f"{self.id} woke up")
+            self.print_message(f"{self.id} woke up", 1)
 
         if not self.awake:
-            self.print_message(f"{self.id} is asleep")
+            self.print_message(f"{self.id} is asleep", 0)
             return
 
         super().process(instruction)

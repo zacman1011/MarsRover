@@ -1,4 +1,5 @@
 import matplotlib
+import numpy as np
 
 matplotlib.use("Qt5Agg")
 
@@ -22,7 +23,7 @@ class MatplotlibRenderer(Renderer):
         pass
 
     def display(self, board):
-        arr = board.np_array()
+        arr = np.array(board.grid())
 
         if self.im is None:
             self.im = self.ax.imshow(arr, cmap="viridis")
@@ -35,6 +36,6 @@ class MatplotlibRenderer(Renderer):
         plt.pause(0.1)
 
     @staticmethod
-    def finish(_board):
+    def finish():
         plt.ioff()
         plt.show()

@@ -1,6 +1,6 @@
 from board import Board
 from generators.rover_generator import generate_rovers
-from renderers.console_display import ConsoleRenderer
+from renderers.console_renderer import ConsoleRenderer
 
 
 class Runner:

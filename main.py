@@ -4,7 +4,7 @@ from constants.instructions import Instruction
 from generators.instructions_generator import generate_instructions
 from generators.obstacle_generator import generate_obstacles
 from generators.rover_generator import generate_rovers
-from renderers.matplotlib_display import MatplotlibRenderer
+from renderers.pygame_renderer import PygameRenderer
 from rovers.insomniac import Insomniac
 from rovers.jumper import Jumper
 from rovers.octopus import Octopus
@@ -72,7 +72,7 @@ def run4():
     obstacles = generate_obstacles(min_coord, max_coord, 100)
     board = Board(min_coord=min_coord, max_coord=max_coord, obstacles=obstacles)
     rovers = generate_rovers(board, 5)
-    renderer = MatplotlibRenderer()
+    renderer = PygameRenderer(60, 60)
     runner = Stepper(board=board, rovers=rovers, renderer=renderer)
     instructions = generate_instructions(len(rovers), 200)
     runner.run(instructions)
